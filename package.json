@@ -1,0 +1,16 @@
+{
+  "name": "cofounder",
+  "version": "2.0.0",
+  "description": "Claude-inspired workspace on Vercel + Supabase.",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel deploy --prod"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cofounder — Your AI workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">✦</div>
+      <div>
+        <div class="brand-name">Cofounder</div>
+        <div class="brand-sub">your AI workspace</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-view="dashboard"><span class="nav-icon">◆</span> Dashboard</button>
+      <button class="nav-item" data-view="projects"><span class="nav-icon">▣</span> Projects</button>
+      <button class="nav-item" data-view="tasks"><span class="nav-icon">✓</span> Tasks</button>
+      <button class="nav-item" data-view="chats"><span class="nav-icon">◌</span> Chats</button>
+      <button class="nav-item" data-view="analytics"><span class="nav-icon">◐</span> Analytics</button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar">PK</div>
+        <div>
+          <div class="user-name">Preeth KP</div>
+          <div class="user-email">hello@techplugged.com</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- DASHBOARD -->
+    <section class="view" id="view-dashboard">
+      <header class="view-header">
+        <div>
+          <h1>Good to see you, Preeth.</h1>
+          <p class="muted">Here's the state of things this morning.</p>
+        </div>
+        <button class="btn btn-primary" id="quick-new-task">+ Quick task</button>
+      </header>
+
+      <div class="stats-grid" id="dash-stats"></div>
+
+      <div class="dash-grid">
+        <div class="card">
+          <div class="card-head">
+            <h2>Active projects</h2>
+            <button class="btn btn-ghost" data-goto="projects">View all →</button>
+          </div>
+          <div id="dash-projects" class="project-list"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h2>Up next</h2>
+            <button class="btn btn-ghost" data-goto="tasks">View all →</button>
+          </div>
+          <div id="dash-tasks" class="task-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="view hidden" id="view-projects">
+      <header class="view-header">
+        <div>
+          <h1>Projects</h1>
+          <p class="muted">Everything you're shipping right now.</p>
+        </div>
+        <button class="btn btn-primary" id="new-project-btn">+ New project</button>
+      </header>
+      <div id="projects-grid" class="projects-grid"></div>
+    </section>
+
+    <!-- TASKS -->
+    <section class="view hidden" id="view-tasks">
+      <header class="view-header">
+        <div>
+          <h1>Tasks</h1>
+          <p class="muted">Drag a task across columns to move it along.</p>
+        </div>
+        <button class="btn btn-primary" id="new-task-btn">+ New task</button>
+      </header>
+      <div class="kanban" id="kanban">
+        <div class="kanban-col" data-status="todo">
+          <div class="kanban-col-head"><span class="dot dot-todo"></span> To do <span class="count" id="count-todo">0</span></div>
+          <div class="kanban-col-body" id="col-todo"></div>
+        </div>
+        <div class="kanban-col" data-status="doing">
+          <div class="kanban-col-head"><span class="dot dot-doing"></span> In progress <span class="count" id="count-doing">0</span></div>
+          <div class="kanban-col-body" id="col-doing"></div>
+        </div>
+        <div class="kanban-col" data-status="done">
+          <div class="kanban-col-head"><span class="dot dot-done"></span> Done <span class="count" id="count-done">0</span></div>
+          <div class="kanban-col-body" id="col-done"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHATS -->
+    <section class="view hidden" id="view-chats">
+      <header class="view-header">
+        <div>
+          <h1>Chats</h1>
+          <p class="muted">Conversations with your AI co-founder.</p>
+        </div>
+        <button class="btn btn-primary" id="new-chat-btn">+ New chat</button>
+      </header>
+      <div class="chat-layout">
+        <div class="chat-list" id="chat-list"></div>
+        <div class="chat-pane">
+          <div class="chat-pane-head" id="chat-head">
+            <div>
+              <h3 id="chat-title">Select a chat</h3>
+              <div class="muted small" id="chat-meta"></div>
+            </div>
+            <button class="btn btn-ghost btn-small hidden" id="delete-chat-btn">Delete</button>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="chat-empty">Pick a conversation on the left, or start a new one.</div>
+          </div>
+          <form class="chat-composer hidden" id="chat-form">
+            <textarea id="chat-input" placeholder="Ask your co-founder anything…" rows="2"></textarea>
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section class="view hidden" id="view-analytics">
+      <header class="view-header">
+        <div>
+          <h1>Analytics</h1>
+          <p class="muted">A view of how the work is moving.</p>
+        </div>
+      </header>
+      <div class="stats-grid" id="analytics-stats"></div>
+      <div class="card">
+        <div class="card-head"><h2>Task completion — last 14 days</h2></div>
+        <div class="chart-wrap"><canvas id="completion-chart" width="800" height="220"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2>By project</h2></div>
+        <div id="analytics-by-project"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal hidden" id="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modal-title">New</h2>
+        <button class="btn btn-ghost" id="modal-close">✕</button>
+      </div>
+      <form id="modal-form" class="modal-body"></form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
